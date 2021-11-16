@@ -1,0 +1,49 @@
+Initial_State = []
+switch = "off"
+print()
+no = int(input("ENTER NUMBE ROF BULB : "))
+
+i = 1
+while i <= no:
+    switch = 'off'
+    Initial_State.append(switch)
+    i += 1
+print()
+print(Initial_State)
+print("==========================")
+print()
+
+
+rno = 1
+while rno <= no:
+    print("ROUND NO----->", rno)
+    print("-----------------------")
+    j = 1
+    while j <= no:
+        if j % rno == 0:
+            if Initial_State[j - 1] == "off":
+                Initial_State[j - 1] = "on"
+
+            elif Initial_State[j - 1] == "on":
+                Initial_State[j - 1] = "off"
+        j = j + 1
+    print(Initial_State)
+    print()
+    rno = rno + 1
+
+print("ALL ROUND COMPLETED")
+print()
+print(no, "BULB RESULT")
+print("....................")
+if Initial_State[no - 1] == "on":
+    print("BULB IS ON")
+else:
+    print("BULB IS OFF")
+
+
+
+
+
+
+
+

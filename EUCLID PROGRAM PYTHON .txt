@@ -1,0 +1,28 @@
+import math
+num_1 = int(input("ENTER THE FIRST NUMBER : "))
+num_2 = int(input("ENTER THE SECOND NUMBER : "))
+gcd = 0
+i = 1
+while i <= num_1 and i <= num_2:
+    if num_1 % i == 0 and num_2 % i == 0:
+        gcd = i
+    i += 1
+print()
+print("GREATEST COMMON DIVISOR IS : ", gcd)
+print()
+val_1 = 0
+val_2 = 0
+i = -1
+while i < 100:
+    j = -1
+    while j < 100:
+        if num_1 * i + num_2 * j == gcd and i <= j:
+            val_1 = i
+            val_2 = j
+        j += 1
+
+    i += 1
+
+print("X =", val_1, "\t", "Y =", val_2, "\t", "GCD =", gcd)
+
+

@@ -1,0 +1,75 @@
+Player_Weight = []
+Team_1 = []
+Team_2 = []
+minor_diff = []
+no_player = int(input("ENTER NUMBER OF PLAYERS : "))
+print()
+print("ENTER WEIGHT OF", no_player, "PLAYERS : ")
+i = 0
+while i < no_player:
+    weight = int(input())
+    Player_Weight.append(weight)
+    i = i + 1
+print("-----------------------------------------------------------")
+print()
+
+
+def minor_difference():
+    diff_1 = max_weight_of_each_team - sum(Team_2)
+    check = diff_1
+    k = 0
+    while k < Player_Weight.__len__():
+        m_d = diff_1 - Player_Weight[k]
+        if m_d >= 0:
+            if check > m_d:
+                check = m_d
+                minor_diff.insert(0, Player_Weight[k])
+        k = k + 1
+    if check == diff_1:
+        return True
+    if minor_diff.__len__() == 0:
+        min_weight = min(Player_Weight)
+        Team_2.append(min_weight)
+        Player_Weight.remove(min_weight)
+    else:
+        Team_2.append(minor_diff[0])
+        Player_Weight.remove(minor_diff[0])
+
+    if sum(Team_2) >= max_weight_of_each_team:
+        return True
+    else:
+        if sum(Team_2) >= max_weight_of_each_team:
+            return True
+        else:
+            return minor_difference()
+
+
+# All Weight sum
+sum_of_weight = sum(Player_Weight)
+
+# Maximum weight require for each team
+max_weight_of_each_team = sum_of_weight // 2
+
+# Considering max weight first
+choosing_no_player_weight = max(Player_Weight)
+Team_2.append(choosing_no_player_weight)
+Player_Weight.remove(choosing_no_player_weight)
+
+if choosing_no_player_weight >= max_weight_of_each_team:
+    Team_1.extend(Player_Weight)
+    if sum(Team_1) < sum(Team_2):
+        print("TEAM 1 :", Team_1, "\t", sum(Team_1), "\t", "||||", "\t", "Team 2 : ", Team_2, "\t", sum(Team_2))
+    else:
+        print("TEAM 1 :", Team_1, "\t", sum(Team_1), "\t", "||||", "\t", "Team 2 : ", Team_2, "\t", sum(Team_2))
+elif choosing_no_player_weight != max_weight_of_each_team:
+    diff = max_weight_of_each_team - choosing_no_player_weight
+    if diff < 0:
+        pass
+    else:
+        value = minor_difference()
+        if value:
+            Team_1.extend(Player_Weight)
+            if sum(Team_1) < sum(Team_2):
+                print("TEAM 1 :", Team_1, "\t", sum(Team_1), "\t", "||||", "\t", "Team 2 : ", Team_2, "\t", sum(Team_2))
+            else:
+                print("TEAM 1 :", Team_1, "\t", sum(Team_1), "\t", "||||", "\t", "Team 2 : ", Team_2, "\t", sum(Team_2))

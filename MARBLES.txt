@@ -1,0 +1,63 @@
+# Function
+def dis_marbles(no_mar_1, cap_box1_1, cap_box2_2):
+    quantity_of_box1 = 0
+    quantity_of_box2 = 0
+    count = 0
+    i = 1
+    while i < 100:
+        if count == 1:
+            return quantity_of_box1, quantity_of_box2
+        j = 1
+        while j < 100:
+            if cap_box1_1 * i + cap_box2_2 * j == no_mar_1:
+                quantity_of_box1 = i
+                quantity_of_box2 = j
+                count = 1
+                break
+            j = j + 1
+        i = i + 1
+    if count == 0:
+        return "FAILED", "FAILED"
+
+
+# Taking input()
+no_mar = int(input("ENTER NUMBER OF MARBLES : "))
+box1 = int(input("ENTER THE COST OF 1ST BOX : "))
+cap_box1 = int(input("ENTER THE CAPACITY OF 1ST BOX : "))
+box2 = int(input("ENTER THE COST OF 2ND BOX : "))
+cap_box2 = int(input("ENTER THE CAPACITY OF 2ND BOX : "))
+print("\n")
+print("NUMBER OF MARBLES : ", no_mar)
+print("COST.BOX-1 : ", box1, "\t", "CAP.BOX-1 : ", cap_box1)
+print("COST.BOX-2 : ", box2, "\t", "CAP.BOX-2 : ", cap_box2)
+print("\n")
+
+# Checking Condition for Function call
+if box1 < box2:
+    a, b = dis_marbles(no_mar, cap_box2, cap_box1)
+    print("*****************************************")
+    print("\t", "BOX-1 : ", b, "\t", "BOX-2 : ", a)
+    print("*****************************************")
+
+elif box2 < box1:
+    a, b = dis_marbles(no_mar, cap_box1, cap_box2)
+    print("*****************************************")
+    print("\t", "BOX-1 : ", a, "\t", "BOX-2 : ", b)
+    print("*****************************************")
+
+elif box1 == box2:
+    if cap_box1 > cap_box2:
+        a, b = dis_marbles(no_mar, cap_box1, cap_box2)
+        print("*****************************************")
+        print("\t", "BOX-1 : ", a, "\t", "BOX-2 : ", b)
+        print("*****************************************")
+
+    else:
+        a, b = dis_marbles(no_mar, cap_box1, cap_box2)
+        print("*****************************************")
+        print("\t", "BOX-1 : ", a, "\t", "BOX-2 : ", b)
+        print("*****************************************")
+
+
+else:
+    print("INVALID INPUTS...!")

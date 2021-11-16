@@ -1,0 +1,63 @@
+#SUMMATION OF FOUR PRIMES
+
+import random
+
+Prime_List = []
+Output = []
+
+no = int(input("ENTER NUMBER : "))
+print()
+if no > 8:
+
+    for num in range(1, no + 1):
+        if num > 1:
+            for i in range(2, num):
+                if (num % i) == 0:
+                    break
+            else:
+                Prime_List.append(num)
+else:
+    print("NO SUMMATION CAN BE PERFORM")
+
+print("------------------------------------")
+
+temp = 0
+j = 0
+while True:
+    i = 0
+    while i < 4:
+        r = random.choice(Prime_List)
+        Output.append(r)
+        temp = temp + r
+        i = i + 1
+    if temp == no:
+        print("PRIME NUMBER :", Output)
+        print("------------")
+        print("SUM OF PRIME NUMBERS IN LIST : ", sum(Output))
+        break
+    Output.clear()
+    temp = 0
+    j = j + 1
+
+
+
+==============OUTPUT===================
+1.
+Enter number: 50
+
+------------------------------------
+PRIME NUMBER : [5, 3, 29, 13]
+------------
+SUM OF PRIME NUMBERS IN LIST :  50
+
+2.
+Enter number: 100
+
+------------------------------------
+PRIME NUMBER : [23, 53, 7, 17]
+------------
+SUM OF PRIME NUMBERS IN LIST :  100
+
+
+
+

@@ -1,0 +1,25 @@
+vertex = {}
+color = {}
+edge = int(input("ENTER NUMBER OF EDGES : "))
+vertices = int(input("ENTER NUMBER OF VERTICES : "))
+i = 0
+while i < vertices:
+    a, b = input().split()
+    color[a] = "red",
+    color[b] = "blue"
+    vertex.setdefault(i, [a]).append(b)
+    i = i + 1
+count = 0
+i = 0
+while i < vertex.__len__():
+    a = vertex[i][0]
+    b = vertex[i][1]
+    if color[a] == color[b]:
+        count = 1
+        print('\nNOT BICOLORABLE')
+        break
+    i = i + 1
+if count == 0:
+    print('\nBICOLORABLE')
+
+

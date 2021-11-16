@@ -1,0 +1,80 @@
+prime = []
+ordinary = []
+
+
+def add(no_1):
+    var1 = [int(e) for e in str(no_1)]
+    result = sum(var1)
+    return result
+
+
+def prime_fact(n):
+    count = 0
+    i = 2
+    while n >= i:
+        if n % i == 0:
+            n = n // i
+            j = 1
+            while j <= i:
+                if i % j == 0:
+                    count += 1
+                j += 1
+            if count == 2:
+                temp = i
+                if temp >= 10:
+                    k = 1
+                    while temp > 0:
+                        var2 = temp % 10
+                        rem = var2
+                        temp = temp // 10
+                        ordinary.append(rem)
+                        k += 1
+                    ordinary.reverse()
+                    prime.extend(ordinary)
+                else:
+                    prime.append(i)
+                if n % i == 0:
+                    count = 0
+                    continue
+        count = 0
+        i += 1
+    return prime
+
+
+no = int(input("ENTER NUMBER : "))
+print()
+print("SHOWING RESULT OF : ", no)
+add1 = add(no)
+print("SUM OF INPUT NUMBER : ", add1)
+factors = prime_fact(no)
+print("PRIME FACTORS : ", factors)
+s = sum(factors)
+print("SUM OF FACTORS : ", s)
+print("****************************\n")
+
+if s == add1:
+    print("SMITH NUMBER")
+else:
+    print("NOT A SMITH NUMBER\n")
+    print("|||||||||||||||||||||||||||\n")
+    ordinary.clear()
+    prime.clear()
+    i = 0
+    while (True):
+        no = no + 1
+        add2 = add(no)
+        factors2 = prime_fact(no)
+        sum1 = sum(factors2)
+        if add2 == sum1:
+            print(no)
+            print("SUM OF INPUT NUMBER : ", add2)
+            print("PRIME FACTORS : ", factors2)
+            print("SUM OF FACTORS : ", sum1)
+            print("****************************\n")
+            print(" SMITH NUMBER")
+            break
+        add2 = 0
+        sum1 = 0
+        ordinary.clear()
+        prime.clear()
+        i = i + 1

@@ -1,0 +1,58 @@
+from collections import defaultdict
+
+graph_info = defaultdict(list)
+Passenger_data = {}
+Passenger_limit = []
+visited = []
+Small = []
+
+
+def inserting_values(pairs):
+    i = 1
+    while i <= pairs:
+        v1, v2, limit = map(int, input().split())
+        graph_info[v1].append(v2)
+        Passenger_data[v1, v2] = limit
+        i = i + 1
+    # print(Passenger_data)
+    # print(graph_info)
+
+
+def find_path(visited, starting, end):
+    visited.append(starting)
+    if starting == end:
+        Passenger_limit.clear()
+        i = 1
+        while i < visited.__len__():
+            j = i - 1
+            while j < i:
+                Passenger_limit.append(Passenger_data[visited[j], visited[i]])
+                j = j + 1
+            i = i + 1
+        # print(Passenger_limit)
+        Small.append(min(Passenger_limit))
+
+    else:
+        for i in graph_info[starting]:
+            if i not in visited:
+                find_path(visited, i, end)
+
+    visited.pop()
+
+
+start = 1
+pairs = int(input("Enter Number of pairs : "))
+destination = int(input("Enter Destination : "))
+inserting_values(pairs)
+
+find_path(visited, start, destination)
+larger = max(Small)
+trips = 0
+i = 0
+while True:
+    if i >= 99:
+        break
+    i = i + (larger - 1)
+    trips = trips + 1
+    i = i + 0
+print("Maximum trip required : ", trips)
